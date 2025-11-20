@@ -11,6 +11,20 @@ const apiClient: AxiosInstance = axios.create({
   },
 });
 
+// ---- WARM-UP TRIGGER ----
+
+export async function pingBackend() {
+  try {
+    await apiClient.get("/health", { timeout: 5000 });
+  } catch (_) {
+    // Cevap gelmese bile sorun değil; amaç backend'i tetiklemek.
+  }
+}
+
+
+
+// --------------------------
+
 export interface UploadPayload {
   keywords: string[];
 }
