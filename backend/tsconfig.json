@@ -21,6 +21,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "types": ["node", "express", "multer"],
     "typeRoots": ["./node_modules/@types"],
     "resolveJsonModule": true
   },
