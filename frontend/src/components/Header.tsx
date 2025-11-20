@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
       <div className="brand">
         <div className="logo">
           <img 
-            src="public/images/yavuzsan_logo.png" 
+            src="images/yavuzsan_logo.png" 
             alt="YAVUZSAN Logo" 
             className="logo-image"
             onError={(e) => {
