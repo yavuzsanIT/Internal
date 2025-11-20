@@ -21,6 +21,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "typeRoots": ["./node_modules/@types"],
     "resolveJsonModule": true
   },
   "include": ["src/**/*"],
