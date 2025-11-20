@@ -12,7 +12,7 @@ function App() {
     // Every 1 minute, ping the backend to keep it awake
     const interval = setInterval(() => {
       pingBackend();
-    }, 60000);
+    }, (5 * 60000));
 
     return () => clearInterval(interval);
   })
