@@ -32,15 +32,18 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 // ============ MIDDLEWARE ============
 
-// CORS configuration
+// CORS
 app.use(
   cors({
-    origin: CORS_ORIGIN.split(',').map((o) => o.trim()),
+    origin: CORS_ORIGIN,
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
     credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'],
   })
 );
+
+app.options("*", cors());
+
 
 // Body parser middleware
 app.use(express.json({ limit: '50mb' }));
