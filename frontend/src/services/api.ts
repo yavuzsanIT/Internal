@@ -15,7 +15,7 @@ const apiClient: AxiosInstance = axios.create({
 
 export async function pingBackend() {
   try {
-    await apiClient.get("/health", { timeout: 5000 });
+    await apiClient.get("api/health", { timeout: 5000 });
   } catch (_) {
     // Cevap gelmese bile sorun değil; amaç backend'i tetiklemek.
   }
