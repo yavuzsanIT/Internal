@@ -19,6 +19,10 @@ dist
 uploads/
 tmp/
 
+# Outputs
+outputs/
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
