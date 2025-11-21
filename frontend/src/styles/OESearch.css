@@ -8,14 +8,11 @@
   margin: 0 0 4px 0;
   font-size: 30px;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--success), #4ded50);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
 }
 
 .section-description {
-  color: var(--muted);
+  color: var(--color-text-muted);
   font-size: 13px;
   margin-bottom: 16px;
 }
@@ -36,34 +33,34 @@
 .oe-search-input {
   flex: 1;
   padding: 11px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: 14px;
   transition: var(--transition);
   font-family: inherit;
 }
 
 .oe-search-input::placeholder {
-  color: var(--muted);
-  opacity: 0.6;
+  color: var(--color-text-muted);
+  opacity: 0.7;
 }
 
 .oe-search-input:focus {
   outline: none;
-  border-color: var(--primary);
-  background: rgba(37, 99, 235, 0.05);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
 }
 
 .oe-search-input.input-error {
-  border-color: var(--error);
-  background: rgba(220, 38, 38, 0.06);
+  border-color: var(--color-error);
+  background: var(--color-error-light);
 }
 
 .oe-search-input.input-error:focus {
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .oe-search-input:disabled {
@@ -82,10 +79,10 @@
 
 .oe-search-error {
   padding: 12px 14px;
-  border-radius: 10px;
-  background: rgba(220, 38, 38, 0.08);
-  border: 1px solid rgba(220, 38, 38, 0.4);
-  color: #fca5a5;
+  border-radius: 8px;
+  background: var(--color-error-light);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--color-error);
   font-size: 13px;
   font-weight: 500;
   animation: slideIn 0.2s ease-out;
@@ -101,9 +98,9 @@
 
 .oe-search-results {
   padding: 16px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--color-border);
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), rgba(16, 185, 129, 0.02));
+  background: var(--color-secondary);
   animation: slideIn 0.3s ease-out;
   display: flex;
   flex-direction: column;
@@ -126,28 +123,28 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-border);
   opacity: 0.85;
 }
 
 .results-header strong {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--color-text-muted);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .oe-code {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(59, 130, 246, 0.1));
-  border: 1px solid rgba(59, 130, 246, 0.4);
-  color: #93c5fd;
+  background: var(--color-surface);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
   padding: 5px 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: 700;
   font-family: 'Courier New', monospace;
   font-size: 13px;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 2px 4px rgba(30, 58, 138, 0.1);
 }
 
 .results-content {
@@ -158,7 +155,7 @@
 
 .yv-codes-label {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--color-text-muted);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -172,25 +169,26 @@
 }
 
 .yv-code-badge {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(16, 185, 129, 0.08));
-  border: 1.5px solid rgba(16, 185, 129, 0.35);
-  color: #86efac;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 13px;
   font-weight: 600;
   font-family: 'Courier New', monospace;
   display: inline-flex;
   align-items: center;
   transition: var(--transition);
-  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.12);
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.1);
 }
 
 .yv-code-badge:hover {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.15));
-  border-color: rgba(16, 185, 129, 0.55);
+  background: rgba(249, 115, 22, 0.08);
+  border-color: var(--color-accent-dark);
+  color: var(--color-accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.15);
 }
 
 .oe-clear-btn {

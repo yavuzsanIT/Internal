@@ -60,6 +60,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   return (
     <div className="file-upload-section">
       <h2>EXCEL İle Ara</h2>
+      <p className="section-description">Dosyanızı sürükleyin, arama kelimelerini girin ve sonuç dosyasını indirin.</p>
       <p className="section-description">Desteklenen formatlar: .xlsx, .xls, .csv</p>
 
       <div

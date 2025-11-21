@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+// Dosya yolları düzeltildi: src/pages/ -> src/components/ için '../../components/...'
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { FileUpload } from '../components/FileUpload';
@@ -148,16 +149,22 @@ export const HomePage: React.FC = () => {
 
       <main className="main-content">
         <div className="page-container">
-          <OESearch onSearch={searchOE} />
 
+          {/* Bölüm 1: OE No Arama (En üstte tam genişlikte yer alacak) */}
+          <div className="oe-search-section card">
+            <OESearch onSearch={searchOE} />
+          </div>
+
+          {/* Bölüm 2: Excel ile Ara ve Yan Panel (Instructions) */}
           <section className="card main-card">
+                    
             <FileUpload
               file={file}
               isDragging={isDragging}
               onFileSelect={handleFileSelect}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
-              onDrop={() => {}}
+              onDrop={() => { }}
               onClear={handleClearFile}
             />
 
@@ -196,6 +203,7 @@ export const HomePage: React.FC = () => {
             )}
           </section>
 
+          {/* Instructions artık sadece Excel ile Ara bölümünün yan panelidir. */}
           <aside className="instructions-sidebar">
             <Instructions />
           </aside>

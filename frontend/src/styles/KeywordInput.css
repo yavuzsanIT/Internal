@@ -24,43 +24,43 @@
 .keyword-input {
   flex: 1;
   padding: 11px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: 14px;
   transition: var(--transition);
   font-family: inherit;
 }
 
 .keyword-input::placeholder {
-  color: var(--muted);
-  opacity: 0.6;
+  color: var(--color-text-muted);
+  opacity: 0.7;
 }
 
 .keyword-input:focus {
   outline: none;
-  border-color: var(--primary);
-  background: rgba(37, 99, 235, 0.05);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
 }
 
 .keyword-input.input-error {
-  border-color: var(--error);
-  background: rgba(239, 68, 68, 0.06);
+  border-color: var(--color-error);
+  background: var(--color-error-light);
 }
 
 .keyword-input.input-error:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .btn-remove-keyword {
   background: transparent;
-  border: 1.5px solid var(--border);
-  color: var(--muted);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-muted);
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -73,14 +73,14 @@
 
 .btn-remove-keyword:hover {
   background: rgba(239, 68, 68, 0.1);
-  color: var(--error);
-  border-color: var(--error);
+  color: var(--color-error);
+  border-color: var(--color-error);
   transform: scale(1.05);
 }
 
 .error-message {
   font-size: 12px;
-  color: #fca5a5;
+  color: var(--color-error);
   padding: 0 4px;
   font-weight: 500;
   animation: slideIn 0.2s ease-out;
