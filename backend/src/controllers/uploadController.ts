@@ -16,7 +16,7 @@ const handleUpload = async (req: UploadRequest, res: Response): Promise<void> =>
   try {
     // Validate file upload
     if (!req.file) {
-      res.status(400).json({ error: 'Dosya yüklenmedi.' });
+      res.status(400).json({ error: 'Dosya yükleyiniz => Örnek: yavuzsan.xlsx' });
       return;
     }
 
@@ -24,7 +24,7 @@ const handleUpload = async (req: UploadRequest, res: Response): Promise<void> =>
 
     // Validate keywords
     if (!keywords || keywords.trim() === '') {
-      res.status(400).json({ error: 'Arama kelimeleri eksik.' });
+      res.status(400).json({ error: 'Arama kelimeleri eksik. Request bodyde arama kelimeleri gerekli. => Örnek: {"keywords": "OE"}' });
       return;
     }
 

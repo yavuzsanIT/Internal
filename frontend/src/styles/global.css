@@ -13,6 +13,7 @@
   --color-border: #CBD5E1;            /* Light gray border */
   --color-error: #EF4444;             /* Red for errors */
   --color-error-light: #FEE2E2;       /* Light red background */
+  --color-header-bg: #b7d8c6;
   
   /* Radius and Shadows */
   --radius: 8px;

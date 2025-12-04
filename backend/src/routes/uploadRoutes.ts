@@ -1,9 +1,9 @@
-import express, { Router, Request, Response } from 'express';
-import multer from 'multer';
-import path from 'path';
+import express, { Request, Response, Router } from 'express';
 import fs from 'fs';
+import path from 'path';
 import uploadController from '../controllers/uploadController';
 import { find_single_YV_Codes } from '../services/InstantSearchService';
+import { getUploadMulter } from './Helpers';
 
 const router: Router = express.Router();
 
@@ -19,49 +19,15 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (_req, file, cb) => {
-    const timestamp = Date.now();
-    const ext = path.extname(file.originalname);
-    const name = path.basename(file.originalname, ext);
-    cb(null, `${name}-${timestamp}${ext}`);
-  },
-});
+// Configure multer
+const uploadMulter = getUploadMulter(uploadDir);
 
-const upload = multer({
-  storage,
-  limits: {
-    fileSize: parseInt(process.env.MAX_FILE_SIZE || '52428800', 10), // 50MB default
-  },
-  fileFilter: (_req, file, cb) => {
-    // Accept only Excel and CSV files
-    const allowedMimes = [
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'application/vnd.ms-excel',
-      'text/csv',
-    ];
-    const allowedExtensions = ['.xlsx', '.xls', '.csv'];
-
-    const ext = path.extname(file.originalname).toLowerCase();
-    const isAllowedExt = allowedExtensions.includes(ext);
-    const isAllowedMime = allowedMimes.includes(file.mimetype);
-
-    if (isAllowedExt || isAllowedMime) {
-      cb(null, true);
-    } else {
-      cb(new Error('Sadece .xlsx, .xls ve .csv dosyaları desteklenmektedir.'));
-    }
-  },
-});
 
 /**
  * POST /api/upload
  * Uploads and processes an Excel file with keywords
  */
-router.post('/upload', upload.single('file'), uploadController.handleUpload);
+router.post('/upload', uploadMulter.single('file'), uploadController.handleUpload);
 
 /**
  * GET /api/download/:filename

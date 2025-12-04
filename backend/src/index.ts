@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import uploadRoutes from './routes/uploadRoutes';
+import updateORJ_NO_Routes from './routes/update_ORJ_NO_Routes';
 
 // Load environment variables
 dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
@@ -58,6 +59,11 @@ if (NODE_ENV === 'development') {
 }
 
 // ============ ROUTES ============
+
+/**
+ *  Update ORJ_NO route
+ */
+app.use('/', updateORJ_NO_Routes);
 
 /**
  * Health check endpoint

@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
 import xlsx from 'xlsx';
+import { getSerializedMapFromJsondata } from './Helpers';
 
 
 async function ORJ_NO_RAW_DATA_LOCALE() {
@@ -25,14 +26,14 @@ async function ORJ_NO_RAW_DATA_LOCALE() {
 
     if (jsonData.length === 0) {
       console.warn('Excel dosyasında veri bulunamadı.');
-      return new Map();
+      return [];
     }
 
     console.log(`Successfully read ${jsonData.length} rows from Excel`);
 
   } catch (error) {
     console.error('Excel dönüştürme hatası:', error);
-    return new Map();
+    return [];
   }
   return jsonData;
 }
@@ -40,28 +41,10 @@ async function ORJ_NO_RAW_DATA_LOCALE() {
 async function ORJ_NO_MAP_LOCALE() {
 
   const jsonData = await ORJ_NO_RAW_DATA_LOCALE();
-  const OE_YV_map = new Map<string, Set<string>>();
 
-  jsonData.forEach((item: any) => {
-    const oe = item['orjNo'];
-    const yv = item['yvNo'];
 
-    if (oe && yv) {
-      const oe_normalized = String(oe).trim();
-      const yv_normalized = String(yv).trim();
-
-      if (OE_YV_map.has(oe_normalized)) {
-        OE_YV_map.get(oe_normalized)?.add(yv_normalized);
-      } else {
-        OE_YV_map.set(oe_normalized, new Set([yv_normalized]));
-      }
-    }
-  });
-
-  const serializedMap = new Map<string, string[]>();
-  OE_YV_map.forEach((yvSet: Set<string>, oeKey: string) => {
-    serializedMap.set(oeKey, Array.from(yvSet));
-  });
+  const serializedMap = await getSerializedMapFromJsondata(jsonData);
+  
 
   await fs.writeFile(path.resolve(__dirname, '../../data/ORJ_NO.json'), JSON.stringify(Array.from(serializedMap.entries()).map(([OE, YV]) => ({ OE, YV })), null, 2), 'utf-8');
   console.log(`Successfully wrote ${serializedMap.size} records to ORJ_NO.json`);
