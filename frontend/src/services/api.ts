@@ -59,4 +59,21 @@ export const downloadFile = (filename: string) => {
   return `${apiUrl}/api/download/${encodeURIComponent(filename)}`;
 };
 
+export const updateOrjNoFile = (
+    formData: FormData, 
+    onProgress: (progress: number) => void
+) => {
+    // Axios, FormData ile otomatik olarak Content-Type: multipart/form-data gönderir.
+    return axios.post(`${apiUrl}/update-orj-no`, formData, {
+        headers: {
+            // 'Content-Type': 'multipart/form-data' // Otomatik ayarlanacak
+        },
+        onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
+            // Dosya yükleme %0-99 arası, işleme %100'e yakın tamamlanabilir.
+            onProgress(percentCompleted < 99 ? percentCompleted : 99); 
+        },
+    });
+};
+
 export default apiClient;

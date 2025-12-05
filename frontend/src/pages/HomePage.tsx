@@ -1,15 +1,16 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 // Dosya yolları düzeltildi: src/pages/ -> src/components/ için '../../components/...'
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-import { FileUpload } from '../components/FileUpload';
-import { KeywordInput } from '../components/KeywordInput';
 import { Alert } from '../components/Alert';
-import { Progress } from '../components/Progress';
+import { FileUpload } from '../components/FileUpload';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
 import { Instructions } from '../components/Instructions';
+import { KeywordInput } from '../components/KeywordInput';
 import { OESearch } from '../components/OESearch';
-import { uploadFile, downloadFile, searchOE } from '../services/api';
+import { Progress } from '../components/Progress';
+import { UpdateOrjNoForm } from '../components/UpdateOrjNoForm';
 import { useAlert } from '../hooks/useAlert';
+import { downloadFile, searchOE, uploadFile } from '../services/api';
 import '../styles/HomePage.css';
 
 export const HomePage: React.FC = () => {
@@ -150,67 +151,89 @@ export const HomePage: React.FC = () => {
       <main className="main-content">
         <div className="page-container">
 
-          {/* Bölüm 1: OE No Arama (En üstte tam genişlikte yer alacak) */}
-          <div className="oe-search-section card">
+          {/* OE Arama - tam genişlik */}
+          <div className="oe-search full-width card">
             <OESearch onSearch={searchOE} />
           </div>
 
-          {/* Bölüm 2: Excel ile Ara ve Yan Panel (Instructions) */}
-          <section className="card main-card">
-                    
-            <FileUpload
-              file={file}
-              isDragging={isDragging}
-              onFileSelect={handleFileSelect}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={() => { }}
-              onClear={handleClearFile}
-            />
+          {/* Ana içerik + Sağ Panel aynı wrapper içinde */}
+          <div className="middle-row">
 
-            <hr className="section-divider" />
+            {/* Ana içerik (sol) */}
+            <div className="file-upload card">
+              <FileUpload
+                file={file}
+                isDragging={isDragging}
+                onFileSelect={handleFileSelect}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+                onDrop={() => { }}
+                onClear={handleClearFile}
+              />
 
-            <KeywordInput
-              keywords={keywords}
-              onKeywordChange={handleKeywordChange}
-              onAddKeyword={handleAddKeyword}
-              onRemoveKeyword={handleRemoveKeyword}
-              errors={keywordErrors}
-              onValidate={validateKeyword}
-            />
+              <hr className="section-divider" />
 
-            <hr className="section-divider" />
+              <KeywordInput
+                keywords={keywords}
+                onKeywordChange={handleKeywordChange}
+                onAddKeyword={handleAddKeyword}
+                onRemoveKeyword={handleRemoveKeyword}
+                errors={keywordErrors}
+                onValidate={validateKeyword}
+              />
 
-            <div className="actions-section">
-              <button
-                className="btn btn-primary btn-large"
-                onClick={handleUpload}
-                disabled={isUploading || !file}
-              >
-                {isUploading ? 'İşleniyor...' : 'İŞLE & TARA'}
-              </button>
-              {resultFilename && (
-                <button className="btn btn-success btn-large" onClick={handleDownload}>
-                  SONUCU İNDİR
+              <hr className="section-divider" />
+
+              <div className="actions-section">
+                <button
+                  className="btn btn-primary btn-large"
+                  onClick={handleUpload}
+                  disabled={isUploading || !file}
+                >
+                  {isUploading ? "İşleniyor..." : "İŞLE & TARA"}
                 </button>
+
+                {resultFilename && (
+                  <button
+                    className="btn btn-success btn-large"
+                    onClick={handleDownload}
+                  >
+                    SONUCU İNDİR
+                  </button>
+                )}
+              </div>
+
+              <Progress
+                isVisible={progress > 0}
+                progress={progress}
+                label={progressLabel}
+              />
+
+              {alert && (
+                <Alert
+                  message={alert.message}
+                  type={alert.type}
+                  onClose={hideAlert}
+                />
               )}
             </div>
 
-            <Progress isVisible={progress > 0} progress={progress} label={progressLabel} />
+            {/* Sağ panel – stabil sticky */}
+            <aside className="sidebar card">
+              <Instructions />
+            </aside>
 
-            {alert && (
-              <Alert message={alert.message} type={alert.type} onClose={hideAlert} />
-            )}
-          </section>
+          </div>
 
-          {/* Instructions artık sadece Excel ile Ara bölümünün yan panelidir. */}
-          <aside className="instructions-sidebar">
-            <Instructions />
-          </aside>
+          {/* En alttaki admin formu */}
+          <div className="update-section full-width card">
+            <UpdateOrjNoForm showAlert={showAlert} />
+          </div>
         </div>
       </main>
 
       <Footer />
     </div>
   );
+
 };

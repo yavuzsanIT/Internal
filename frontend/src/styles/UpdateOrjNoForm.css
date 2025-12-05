@@ -1,0 +1,224 @@
+/* -------------------------------------------------------
+   UPDATE ORJ NO FORM — MODERN UI REVISION
+   Clean • Professional • Consistent with global.css
+-------------------------------------------------------- */
+
+.update-orj-no-container {
+    padding: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+}
+
+.update-orj-no-container:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* -------------------------------------------------------
+   Collapsible Header
+-------------------------------------------------------- */
+
+.collapsible-header {
+    background: var(--color-surface);
+    color: var(--color-primary);
+    padding: 18px 26px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.collapsible-header:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary-dark);
+}
+
+.collapsible-header .title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.collapsible-header .toggle-icon {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------
+   Content Section
+-------------------------------------------------------- */
+
+.collapsible-content {
+    padding: 26px 26px 32px;
+    animation: slideDown 0.25s ease-out;
+}
+
+.collapsible-content .description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    margin-bottom: 22px;
+}
+
+.section-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 22px 0;
+}
+
+/* -------------------------------------------------------
+   Input Groups
+-------------------------------------------------------- */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 12px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+
+    font-size: 14px;
+    transition: var(--transition);
+
+    background: #fff;
+}
+
+.input-group input:focus {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    outline: none;
+}
+
+/* Error State */
+.input-group .input-error {
+    border-color: var(--color-error) !important;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+}
+
+.error-message {
+    margin-top: 8px;
+    background: var(--color-error-light);
+    color: var(--color-error);
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* -------------------------------------------------------
+   File upload section
+-------------------------------------------------------- */
+
+.file-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-clear-file {
+    font-size: 18px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--color-bg);
+    background-color: var(  --color-error);
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    width: 20%;
+    border-radius: var(--radius);
+}
+
+.btn-clear-file:hover {
+    color: var(--color-error-dark);
+}
+
+/* -------------------------------------------------------
+   Submit Button
+-------------------------------------------------------- */
+
+.actions-section {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 14px;
+}
+
+.btn-warning {
+    background: var(--color-accent);
+    color: #fff;
+    padding: 12px 28px;
+    font-size: 15px;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+}
+
+.btn-warning:hover:not(:disabled) {
+    background: var(--color-accent-dark);
+    box-shadow: 0 6px 18px rgba(249, 115, 22, 0.25);
+}
+
+.btn-warning:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* -------------------------------------------------------
+   Animation
+-------------------------------------------------------- */
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------------------------------------------------------
+   Mobile
+-------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .collapsible-header {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+
+    .collapsible-content {
+        padding: 18px 20px 26px;
+    }
+
+    .btn-warning {
+        width: 100%;
+    }
+}
