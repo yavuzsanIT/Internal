@@ -7,8 +7,8 @@
  * `findYVCodes` with your preferred data source or algorithm.
  */
 
-import { normalize_OE } from '../utils/helpers';
 import { get_OE_YV_MAP } from '../io/OE_YV_Map';
+import { normalize_OE } from '../utils/helpers';
 
 export async function find_single_YV_Codes(oeNumber: string): Promise<string[]> {
 
