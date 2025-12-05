@@ -9,18 +9,18 @@ export async function ORJ_NO_RAW_DATA_LOCALE() {
   try {
 
     // Resolve file path
-    const resolvedPath = path.resolve(__dirname, '../../data/ORJ_NO.json');
-    console.log(`Reading Excel file: ${resolvedPath}`);
+    const resolvedPath = path.join(process.cwd(), 'data/ORJ_NO.json');
+    console.log(`Reading Json file: ${resolvedPath}`);
 
     // Read JSON data
     jsonData = JSON.parse(await fs.readFile(resolvedPath, 'utf-8'));
 
     if (jsonData.length === 0) {
-      console.warn('Excel dosyasında veri bulunamadı.');
+      console.warn('JSON dosyasında veri bulunamadı.');
       return [];
     }
 
-    console.log(`Successfully read ${jsonData.length} rows from JSON DB file`);
+    console.log(`Successfully read ${jsonData.length} records from JSON DB file`);
 
   } catch (error) {
     console.error('JSON okuma hatası:', error);

@@ -19,6 +19,7 @@ export async function find_single_YV_Codes(oeNumber: string): Promise<string[]> 
         }
 
         // Search in the map
+        console.log("Aranan OE: ", oeNumber);
         const results = (await get_OE_YV_MAP()).get(normalize_OE(oeNumber.trim()));
 
         if (!results || results.length === 0) {

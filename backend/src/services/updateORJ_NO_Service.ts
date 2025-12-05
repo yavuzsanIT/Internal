@@ -14,6 +14,7 @@ export async function updateOrjNoData(uploadedPath: string) {
 
     const outputFilePath = path.join(process.cwd(), "data/ORJ_NO.json");
     await writeSourceFile(outputFilePath, serializedMap);
+    console.log(`Susccessfully wrote ${serializedMap.size} records to ${outputFilePath}`);
 
 }
 

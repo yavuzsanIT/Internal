@@ -3,9 +3,10 @@
 export async function getSerializedMapFromJsondata(jsonData: any[]) {
     const OE_YV_map = new Map<string, Set<string>>();
 
+    console.log(`Processing ${jsonData.length} records`);
     jsonData.forEach((item: any) => {
-        const oe = item['orjNo'];
-        const yv = item['yvNo'];
+        const oe = item.OE;
+        const yv = item.YV;
 
         if (oe && yv) {
             const oe_normalized = String(oe).trim();
@@ -23,6 +24,8 @@ export async function getSerializedMapFromJsondata(jsonData: any[]) {
     OE_YV_map.forEach((yvSet: Set<string>, oeKey: string) => {
         serializedMap.set(oeKey, Array.from(yvSet));
     });
+
+    console.log(`Serialized map size: ${serializedMap.size}`);
 
     return serializedMap;
 }
