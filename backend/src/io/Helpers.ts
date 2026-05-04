@@ -5,8 +5,8 @@ export async function getSerializedMapFromJsondata(jsonData: any[]) {
 
     console.log(`Processing ${jsonData.length} records`);
     jsonData.forEach((item: any) => {
-        const oe = item.OE;
-        const yv = item.YV;
+        const oe = item.OE || item["orjNo"];
+        const yv = item.YV || item["yvNo"];
 
         if (oe && yv) {
             const oe_normalized = String(oe).trim();

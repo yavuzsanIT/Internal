@@ -2,12 +2,14 @@ import fs from 'fs/promises';
 import path from 'path';
 import xlsx from 'xlsx';
 import { getSerializedMapFromJsondata } from '../io/Helpers';
+import { removeMoreThan_X } from './RemoverService';
 
 
 
 export async function updateOrjNoData(uploadedPath: string) {
 
     const jsonData = await readSourceFile(uploadedPath);
+    console.log("Update dpsyasının son hali: ", jsonData.length);
 
     const serializedMap = await getSerializedMapFromJsondata(jsonData);
 
@@ -15,6 +17,8 @@ export async function updateOrjNoData(uploadedPath: string) {
     const outputFilePath = path.join(process.cwd(), "data/ORJ_NO.json");
     await writeSourceFile(outputFilePath, serializedMap);
     console.log(`Susccessfully wrote ${serializedMap.size} records to ${outputFilePath}`);
+
+    await removeMoreThan_X(path.dirname(outputFilePath), 5);
 
 }
 
